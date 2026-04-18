@@ -3,126 +3,425 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Almomani</title>
+<title>Mohammed Almomani | Social Hub</title>
 
 <style>
-body {
+* {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #0f2027, #0f0f0f);
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 20% 30%, #0a0f1e, #030507);
     color: white;
     text-align: center;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-/* خلفية متحركة */
+/* خلفية متحركة متطورة */
 body::before {
     content: "";
     position: fixed;
+    top: -50%;
+    left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, #00c6ff, #0072ff, #00c6ff);
-    animation: moveBg 10s linear infinite;
-    opacity: 0.08;
+    background: linear-gradient(45deg, 
+        rgba(0,198,255,0.1), 
+        rgba(0,114,255,0.05), 
+        rgba(0,198,255,0.1),
+        rgba(0,114,255,0.05));
+    animation: moveBg 20s linear infinite;
+    pointer-events: none;
 }
 
 @keyframes moveBg {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(-50%, -50%); }
+    0% { transform: translate(0,0) rotate(0deg); }
+    100% { transform: translate(-25%, -25%) rotate(5deg); }
+}
+
+/* جزيئات متحركة */
+.particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: #00c6ff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 8s infinite;
+    pointer-events: none;
+}
+
+@keyframes floatParticle {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(0);
+    }
+    10% {
+        opacity: 0.5;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(100px);
+    }
 }
 
 .container {
-    margin-top: 60px;
     position: relative;
+    z-index: 2;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* صورة البروفايل مع تأثيرات متقدمة */
+.profile-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px;
+}
+
+.profile {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(0,198,255,0.8);
+    box-shadow: 0 0 30px rgba(0,198,255,0.4);
+    animation: float 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0,198,255,0.8);
+}
+
+/* حلقة نيون حول الصورة */
+.profile-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #00c6ff, #0072ff, #00c6ff);
+    opacity: 0;
+    transition: opacity 0.3s ease;
     z-index: 1;
 }
 
-/* صورة البروفايل */
-.profile {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid #00c6ff;
-    box-shadow: 0 0 25px #00c6ff;
-    animation: float 3s ease-in-out infinite;
+.profile-wrapper:hover::before {
+    opacity: 0.5;
+    animation: rotate 2s linear infinite;
 }
 
-/* حركة خفيفة للصورة */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @keyframes float {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
 }
 
 h1 {
-    margin-top: 15px;
+    margin-top: 20px;
+    font-size: 2rem;
+    background: linear-gradient(135deg, #ffffff, #00c6ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
 }
 
-p {
-    color: #aaa;
-    margin-bottom: 30px;
+.bio {
+    color: #a0a0a0;
+    margin: 10px 0 30px;
+    font-size: 1rem;
+    opacity: 0.9;
 }
 
-/* الأزرار */
-.link {
-    display: block;
-    width: 270px;
-    margin: 15px auto;
+/* عدادات إحصائيات */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
     padding: 15px;
-    border-radius: 15px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 60px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00c6ff;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* الأزرار المحسنة */
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 300px;
+    margin: 14px auto;
+    padding: 14px 24px;
+    border-radius: 50px;
     text-decoration: none;
     color: white;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
-/* تأثير نيون عند المرور */
-.link:hover {
-    transform: scale(1.07);
-    background: #00c6ff;
-    box-shadow: 0 0 20px #00c6ff, 0 0 40px #0072ff;
-}
-
-/* تأثير لمعان */
 .link::before {
     content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: -100%;
-    left: 0;
-    background: linear-gradient(transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,198,255,0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
 
 .link:hover::before {
-    top: 100%;
+    width: 300px;
+    height: 300px;
+}
+
+.link:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: linear-gradient(135deg, rgba(0,198,255,0.2), rgba(0,114,255,0.2));
+    border-color: rgba(0,198,255,0.5);
+    box-shadow: 0 10px 25px rgba(0,198,255,0.2);
+}
+
+/* أيقونات مخصصة */
+.link .icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s;
+}
+
+.link:hover .icon {
+    transform: scale(1.1);
+}
+
+.link .text {
+    flex: 1;
+    text-align: left;
+}
+
+.link .arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s;
+}
+
+.link:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ألوان خاصة بكل منصة */
+.link.linkedin:hover { background: linear-gradient(135deg, #0077b5, #004d73); }
+.link.instagram:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.link.youtube:hover { background: linear-gradient(135deg, #ff0000, #cc0000); }
+.link.twitter:hover { background: linear-gradient(135deg, #1da1f2, #0d8bd9); }
+
+/* تذييل الصفحة */
+.footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 0.75rem;
+    color: #666;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* توافق مع الشاشات الصغيرة */
+@media (max-width: 480px) {
+    .profile-wrapper {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .link {
+        width: 260px;
+        padding: 12px 20px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    .stats {
+        gap: 20px;
+        padding: 12px;
+    }
+    
+    .stat-number {
+        font-size: 1.2rem;
+    }
+}
+
+/* تأثير التمرير السلس */
+html {
+    scroll-behavior: smooth;
 }
 </style>
-
 </head>
 <body>
 
+<!-- جزيئات عشوائية -->
+<div id="particles"></div>
+
 <div class="container">
-
-    <!-- 🔥 حط رابط صورتك هون -->
-    <img src="https://i.imgur.com/TCCJDie.jpeg" class="profile">
- 
+    
+    <div class="profile-wrapper">
+        <img class="profile" src="https://i.imgur.com/TCCJDie.jpeg" alt="Mohammed Almomani">
+    </div>
+    
     <h1>Mohammed Almomani</h1>
-    <p>Follow Me Everywhere 🚀</p>
-
-    <a class="link" href="https://www.linkedin.com/in/mohmmed-almomani-819b70400" target="_blank">💼 LinkedIn</a>
+    <div class="bio">✨ Creative Developer | Tech Enthusiast | Content Creator ✨</div>
     
-    <a class="link" href="https://www.instagram.com/7amodah_momani/" target="_blank">📸 Instagram</a>
+    <!-- إحصائيات تواصل اجتماعي -->
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Connections</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">1K+</div>
+            <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects</div>
+        </div>
+    </div>
     
-    <a class="link" href="https://www.youtube.com/@IEEEANUStudentBranch" target="_blank">▶️ YouTube</a>
+    <!-- روابط التواصل -->
+    <a class="link linkedin" href="https://www.linkedin.com/in/mohmmed-almomani-819b70400" target="_blank">
+        <span class="icon">💼</span>
+        <span class="text">LinkedIn</span>
+        <span class="arrow">→</span>
+    </a>
     
-    <a class="link" href="https://x.com/MohmmedAlm69518" target="_blank">🐦 X (Twitter)</a>
-
+    <a class="link instagram" href="https://www.instagram.com/7amodah_momani/" target="_blank">
+        <span class="icon">📸</span>
+        <span class="text">Instagram</span>
+        <span class="arrow">→</span>
+    </a>
+    
+    <a class="link youtube" href="https://www.youtube.com/@IEEEANUStudentBranch" target="_blank">
+        <span class="icon">▶️</span>
+        <span class="text">YouTube</span>
+        <span class="arrow">→</span>
+    </a>
+    
+    <a class="link twitter" href="https://x.com/MohmmedAlm69518" target="_blank">
+        <span class="icon">🐦</span>
+        <span class="text">X (Twitter)</span>
+        <span class="arrow">→</span>
+    </a>
+    
+    <div class="footer">
+        © 2024 Mohammed Almomani | All Rights Reserved
+    </div>
 </div>
+
+<script>
+// إضافة جزيئات متحركة بشكل ديناميكي
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 50;
+    
+    for(let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // خصائص عشوائية
+        const size = Math.random() * 3 + 1;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 10;
+        const duration = Math.random() * 10 + 5;
+        
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = left + '%';
+        particle.style.animationDelay = delay + 's';
+        particle.style.animationDuration = duration + 's';
+        particle.style.opacity = Math.random() * 0.5;
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// تحديث الإحصائيات بأرقام متحركة (تأثير)
+function animateNumbers() {
+    const numbers = document.querySelectorAll('.stat-number');
+    numbers.forEach(num => {
+        const target = num.innerText;
+        if(target.includes('+')) {
+            const value = parseInt(target);
+            let current = 0;
+            const increment = value / 50;
+            const updateNumber = () => {
+                if(current < value) {
+                    current += increment;
+                    num.innerText = Math.floor(current) + '+';
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    num.innerText = value + '+';
+                }
+            };
+            updateNumber();
+        }
+    });
+}
+
+// تشغيل المؤثرات عند تحميل الصفحة
+window.addEventListener('load', () => {
+    createParticles();
+    animateNumbers();
+});
+</script>
 
 </body>
 </html>
