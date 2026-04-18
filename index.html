@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mohammed Almomani | Social Hub</title>
 
+<!-- Font Awesome 6 (أيقونات حقيقية) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 * {
     margin: 0;
@@ -25,7 +28,7 @@ body {
     position: relative;
 }
 
-/* خلفية متحركة متطورة */
+/* خلفية متحركة */
 body::before {
     content: "";
     position: fixed;
@@ -84,7 +87,7 @@ body::before {
     margin: 0 auto;
 }
 
-/* صورة البروفايل مع تأثيرات متقدمة */
+/* صورة البروفايل */
 .profile-wrapper {
     position: relative;
     width: 140px;
@@ -110,7 +113,6 @@ body::before {
     box-shadow: 0 0 40px rgba(0,198,255,0.8);
 }
 
-/* حلقة نيون حول الصورة */
 .profile-wrapper::before {
     content: "";
     position: absolute;
@@ -191,7 +193,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 15px;
     width: 300px;
     margin: 14px auto;
     padding: 14px 24px;
@@ -233,25 +235,29 @@ h1 {
     box-shadow: 0 10px 25px rgba(0,198,255,0.2);
 }
 
-/* أيقونات مخصصة */
-.link .icon {
-    font-size: 1.3rem;
+/* أيقونات FontAwesome */
+.link i {
+    font-size: 1.5rem;
+    width: 32px;
+    text-align: center;
     transition: transform 0.3s;
 }
 
-.link:hover .icon {
-    transform: scale(1.1);
+.link:hover i {
+    transform: scale(1.15);
 }
 
 .link .text {
     flex: 1;
     text-align: left;
+    font-size: 1rem;
 }
 
 .link .arrow {
     opacity: 0;
     transform: translateX(-10px);
     transition: all 0.3s;
+    font-size: 1.2rem;
 }
 
 .link:hover .arrow {
@@ -264,6 +270,7 @@ h1 {
 .link.instagram:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
 .link.youtube:hover { background: linear-gradient(135deg, #ff0000, #cc0000); }
 .link.twitter:hover { background: linear-gradient(135deg, #1da1f2, #0d8bd9); }
+.link.discord:hover { background: linear-gradient(135deg, #5865F2, #4752c4); }
 
 /* تذييل الصفحة */
 .footer {
@@ -284,6 +291,11 @@ h1 {
     .link {
         width: 260px;
         padding: 12px 20px;
+    }
+    
+    .link i {
+        font-size: 1.3rem;
+        width: 28px;
     }
     
     h1 {
@@ -336,29 +348,35 @@ html {
         </div>
     </div>
     
-    <!-- روابط التواصل -->
+    <!-- روابط التواصل مع أيقونات FontAwesome حقيقية -->
     <a class="link linkedin" href="https://www.linkedin.com/in/mohmmed-almomani-819b70400" target="_blank">
-        <span class="icon">💼</span>
+        <i class="fab fa-linkedin-in"></i>
         <span class="text">LinkedIn</span>
-        <span class="arrow">→</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
     </a>
     
     <a class="link instagram" href="https://www.instagram.com/7amodah_momani/" target="_blank">
-        <span class="icon">📸</span>
+        <i class="fab fa-instagram"></i>
         <span class="text">Instagram</span>
-        <span class="arrow">→</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
     </a>
     
     <a class="link youtube" href="https://www.youtube.com/@IEEEANUStudentBranch" target="_blank">
-        <span class="icon">▶️</span>
+        <i class="fab fa-youtube"></i>
         <span class="text">YouTube</span>
-        <span class="arrow">→</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
     </a>
     
     <a class="link twitter" href="https://x.com/MohmmedAlm69518" target="_blank">
-        <span class="icon">🐦</span>
+        <i class="fab fa-twitter"></i>
         <span class="text">X (Twitter)</span>
-        <span class="arrow">→</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+    </a>
+    
+    <a class="link discord" href="https://discord.gg/your-server-invite" target="_blank">
+        <i class="fab fa-discord"></i>
+        <span class="text">Discord Server</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
     </a>
     
     <div class="footer">
@@ -367,7 +385,7 @@ html {
 </div>
 
 <script>
-// إضافة جزيئات متحركة بشكل ديناميكي
+// إضافة جزيئات متحركة
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 50;
@@ -376,7 +394,6 @@ function createParticles() {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
-        // خصائص عشوائية
         const size = Math.random() * 3 + 1;
         const left = Math.random() * 100;
         const delay = Math.random() * 10;
@@ -393,7 +410,7 @@ function createParticles() {
     }
 }
 
-// تحديث الإحصائيات بأرقام متحركة (تأثير)
+// تحديث الإحصائيات
 function animateNumbers() {
     const numbers = document.querySelectorAll('.stat-number');
     numbers.forEach(num => {
@@ -416,7 +433,6 @@ function animateNumbers() {
     });
 }
 
-// تشغيل المؤثرات عند تحميل الصفحة
 window.addEventListener('load', () => {
     createParticles();
     animateNumbers();
